@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
+using AspnetTuzhilin.API.Models;
+using AspnetTuzhilin.API.Data;
 
 namespace AspnetTuzhilin.API
 {
@@ -25,6 +28,7 @@ namespace AspnetTuzhilin.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DataContext>(x=> x.UseSqlServer(Configuration.GetConnectionString("DefaultConection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -37,10 +41,10 @@ namespace AspnetTuzhilin.API
             }
             else
             {
-                app.UseHsts();
+               // app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+         //   app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

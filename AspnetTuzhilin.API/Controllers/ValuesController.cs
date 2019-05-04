@@ -14,6 +14,7 @@ namespace AspnetTuzhilin.API.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+          //  throw new Exception("Aspnet Excaption");
             return new string[] { "value1", "value2" };
         }
 
